@@ -3,13 +3,14 @@
 android app UI and Function help guide  
 
 1.效果图</br></br>
-[comment]:(注释掉本行)![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
+[comment]:注释掉本行
+[comment]:![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
 
-[comment]:(注释掉本行)![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png)
+[comment]:![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png)
   
-[comment]:(注释掉本行)![图3](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot3.png)
+[comment]:![图3](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot3.png)
  
-[comment]:(注释掉本行)![图4](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot4.png)
+[comment]:![图4](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot4.png)
  
  ![Gif演示](https://github.com/AndBird/guideHelp/blob/master/screenImage/Animation.gif)
  

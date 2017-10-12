@@ -1,20 +1,19 @@
 # guideHelp
 安卓UI帮助  
-android app UI and Function help guide
+android app UI and Function help guide  
 
 1.效果图
-![](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
+![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
 
-![][1]
-  [1]: https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png
+![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png)
   
- ![](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot3.png)
+ ![图3](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot3.png)
  
- ![](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot4.png)
+ ![图4](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot4.png)
  
- ![](https://github.com/AndBird/guideHelp/blob/master/screenImage/Animation.gif)
+ ![Gif演示](https://github.com/AndBird/guideHelp/blob/master/screenImage/Animation.gif)
  
- 2.使用说明
+ 2.使用说明  
  (1)创建引导任务
   
     //设置绝对显示位置，设置顶部绝对位置(无箭头)
@@ -28,7 +27,7 @@ android app UI and Function help guide
     optGuideHelp.addGuideHelpTask(guideHelpTaskInfo);
     optGuideHelp.showGuideHelp();
     
-3.方法介绍
+3.方法介绍</br>
 引导任务的显示样式主要是通过定义GuideHelpTaskInfo对象来实现。
 
 /**
@@ -158,4 +157,5 @@ android app UI and Function help guide
 	}
 
  
+ Apk下载地址<https://github.com/AndBird/guideHelp/blob/master/apk/GuideHelpDemo.apk>
  

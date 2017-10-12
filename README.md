@@ -1,6 +1,6 @@
 # guideHelp  
-安卓UI引导帮助  
-android app UI and Function help guide  
+安卓UI引导帮助</br>
+android app UI and Function help guide  
 
 <!-- (注释掉本行及多行,注释格式1) -->
 <!-- 换行用</br>或者行末2空格加回车 -->

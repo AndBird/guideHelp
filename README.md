@@ -19,7 +19,7 @@ android app UI and Function help guide
  
  
  </br>
- 2.使用说明  
+ 2.使用说明(/br) 
  (1)创建引导任务
   
     //设置绝对显示位置，设置顶部绝对位置(无箭头)

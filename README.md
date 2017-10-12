@@ -18,7 +18,7 @@ android app UI and Function help guide
  
  
  </br>
- 2.使用说明  
+ 2.使用说明    
  (1)创建引导任务
   
     //设置绝对显示位置，设置顶部绝对位置(无箭头)
@@ -35,7 +35,7 @@ android app UI and Function help guide
 
 </br> 
 3.方法介绍</br>
-		引导任务的显示样式主要是通过定义GuideHelpTaskInfo对象来实现。
+引导任务的显示样式主要是通过定义GuideHelpTaskInfo对象来实现。
 
 /**
 	 * 功能: 需要显示引导功能的view，用于控制引导view的位置(相对位置)等

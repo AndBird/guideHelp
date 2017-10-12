@@ -3,7 +3,7 @@
 android app UI and Function help guide  
 
 1.效果图</br></br>
-[comment]:注释掉本行</br>
+[comment]:(注释掉本行,注释格式[comment]:())
 [comment]:![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
 
 [comment]:![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png)

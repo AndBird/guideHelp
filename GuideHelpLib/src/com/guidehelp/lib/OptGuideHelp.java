@@ -149,7 +149,16 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 				public boolean onKey(View v, int keyCode, KeyEvent event) {
 					 //PrintLog.printLog(TAG, "key event");
 					 //禁止返回退出引导界面
+					/*  if (keyCode == KeyEvent.KEYCODE_BACK){
+						 return true;
+					 }
+					 return false; */
+					 
 					 if (keyCode == KeyEvent.KEYCODE_BACK){
+						 if(event.getAction() == KeyEvent.ACTION_UP){
+							 //避免一次做2次
+							 doClickEvent();
+						 }
 						 return true;
 					 }
 					 return false;

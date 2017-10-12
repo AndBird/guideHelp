@@ -2,14 +2,17 @@
 安卓UI帮助  
 android app UI and Function help guide  
 
-1.效果图</br></br>
-[comment]:![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
+<!-- (注释掉本行,注释格式1) -->
 
-[comment]:![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png)
+1.效果图
+
+<!-- ![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png) -->
+
+<!-- ![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png) -->
   
-[comment]:![图3](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot3.png)
+<!-- ![图3](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot3.png) -->
  
-[comment]:![图4](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot4.png)
+<!-- [图4](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot4.png "logo") -->
  
  ![Gif演示](https://github.com/AndBird/guideHelp/blob/master/screenImage/Animation.gif)
  

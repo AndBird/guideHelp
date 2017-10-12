@@ -3,7 +3,7 @@
 android app UI and Function help guide  
 
 1.效果图
-![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
+[^-^]![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
 
 ![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png)
   
@@ -157,5 +157,5 @@ android app UI and Function help guide
 	}
 
  
- Apk下载地址<https://github.com/AndBird/guideHelp/blob/master/apk/GuideHelpDemo.apk>
+ [Apk下载](https://github.com/AndBird/guideHelp/blob/master/apk/GuideHelpDemo.apk)
  

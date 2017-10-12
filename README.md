@@ -10,11 +10,11 @@ android app UI and Function help guide
 
  ![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png) 
   
- ![图3](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot3.png) -->
+ ![图3](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot3.png) 
  
- [图4](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot4.png "logo") 
+ [图4](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot4.png "logo") -->
  
- [Gif演示](https://github.com/AndBird/guideHelp/blob/master/screenImage/Animation.gif "Gif演示")
+ ![Gif演示](https://github.com/AndBird/guideHelp/blob/master/screenImage/Animation.gif "Gif演示")
  
  
  </br>

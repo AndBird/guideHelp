@@ -1,5 +1,5 @@
 # guideHelp  
-安卓UI帮助  
+安卓UI引导帮助  
 android app UI and Function help guide  
 
 <!-- (注释掉本行及多行,注释格式1) -->
@@ -38,7 +38,7 @@ android app UI and Function help guide
 3.方法介绍</br>
 引导任务的显示样式主要是通过定义GuideHelpTaskInfo对象来实现。
 
-/**
+	/**
 	 * 功能: 需要显示引导功能的view，用于控制引导view的位置(相对位置)等
 	 * @param attachView : 需要显示引导的view
 	 * 

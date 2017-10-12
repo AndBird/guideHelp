@@ -2,7 +2,8 @@
 安卓UI帮助  
 android app UI and Function help guide  
 
-<!-- (注释掉本行,注释格式1) -->
+<!-- (注释掉本行及多行,注释格式1) -->
+<!-- 换行用</br>或者行末2空格加回车 -->
 
 `1.效果图`
 
@@ -18,7 +19,7 @@ android app UI and Function help guide
  
  
  </br>
- 2.使用说明    
+ 2.使用说明  
  (1)创建引导任务
   
     //设置绝对显示位置，设置顶部绝对位置(无箭头)

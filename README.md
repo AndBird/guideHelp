@@ -1,5 +1,5 @@
 # guideHelp
-安卓UI帮助
+安卓UI帮助  
 android app UI and Function help guide
 
 1.效果图

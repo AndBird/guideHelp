@@ -1,9 +1,9 @@
-# guideHelp
+# guideHelp  
 安卓UI帮助  
 android app UI and Function help guide  
 
-1.效果图
-[^-^]![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
+1.效果图</br>
+[comment]![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png)
 
 ![图2](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot2.png)
   
@@ -13,6 +13,8 @@ android app UI and Function help guide
  
  ![Gif演示](https://github.com/AndBird/guideHelp/blob/master/screenImage/Animation.gif)
  
+ 
+ </br>
  2.使用说明  
  (1)创建引导任务
   
@@ -26,7 +28,9 @@ android app UI and Function help guide
     OptGuideHelp optGuideHelp = new OptGuideHelp(this);
     optGuideHelp.addGuideHelpTask(guideHelpTaskInfo);
     optGuideHelp.showGuideHelp();
-    
+ 
+
+</br> 
 3.方法介绍</br>
 引导任务的显示样式主要是通过定义GuideHelpTaskInfo对象来实现。
 
@@ -144,10 +148,6 @@ android app UI and Function help guide
 	public GuideHelpTaskInfo setShowArrow(boolean showArrow){
 		this.needArrow = showArrow;
 		return this;
-	}
-
-	public void build(){
-		
 	}
 	
 	//是否可以显示箭头

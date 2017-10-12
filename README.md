@@ -4,7 +4,7 @@ android app UI and Function help guide
 
 <!-- (注释掉本行,注释格式1) -->
 
-1.效果图
+`1.效果图`
 
 <!-- ![图1](https://github.com/AndBird/guideHelp/blob/master/screenImage/Screenshot1.png) 
 

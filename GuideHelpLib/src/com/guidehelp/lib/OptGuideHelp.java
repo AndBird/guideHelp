@@ -197,6 +197,20 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 		}, 100);
 	}
 	
+	private void doClickEvent(){
+		try {
+			curShowIndex++;
+			if(curShowIndex < helpList.size()){
+				showByOrder();
+			}else{
+				hideGuideHelp();
+				showFinish(true);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	/**隐藏引导界面*/
 	@Override
 	public void hideGuideHelp() {

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="标题"
+        android:textSize="18sp"
+        android:id="@+id/titleView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        />
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+        
+        <ImageView 
+            android:id="@+id/testView1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/example1"
+            />
+         <ImageView 
+            android:id="@+id/testView2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/example2"
+            android:layout_marginLeft="6dp"
+            />
+          <ImageView 
+            android:id="@+id/testView3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/example3"
+             android:layout_marginLeft="6dp"
+            />
+           <ImageView 
+            android:id="@+id/testView4"   
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/example4"
+            android:layout_marginLeft="6dp"
+            /> 
+    </LinearLayout>
+    
+    
+     <ImageView 
+            android:id="@+id/testView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/example5"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp" 
+         />
+     
+     
+      <ImageView 
+            android:id="@+id/testView7"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/example1"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp" 
+         />
+       
+     
+     <LinearLayout 
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:orientation="horizontal"
+         android:layout_gravity="center_horizontal">
+         
+	     <ImageView
+	         android:id="@+id/testView6" 
+	         android:layout_width="wrap_content"
+	         android:layout_height="30dp"
+	         android:src="@drawable/ic_launcher"
+	         android:layout_gravity="bottom"
+	         />
+     </LinearLayout>
+</LinearLayout>

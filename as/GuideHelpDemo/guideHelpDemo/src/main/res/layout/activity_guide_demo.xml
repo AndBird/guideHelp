@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    
+    <Button 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="普通Activity中显示"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/button1"
+        />
+
+     <Button 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fragment中显示"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/button2"
+        />
+     
+     <TextView 
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_marginTop="30dp"
+         android:layout_marginLeft="12dp"
+         android:layout_marginRight="12dp"
+         android:textSize="14sp"
+         android:textColor="#ffbbff"
+         android:text="
+	 说明:由于fragment可以切换显示，所以当引导界面需要推迟显示或者当网络数据加载成功后显示，
+	 就可能造成页面已经切换到其他fragment页面，然后引导界面还能显示出来，出现误导情况。故在有fragment
+	 的页面中，引导界面的显示需要加入一些判断(普通activity不需要，fragment中的引导界面不需要推迟显示的，也不需要加入控制)
+	 \n\n 
+	  处理:当fragment已经隐藏时，不再显示引导(推迟显示)，当页面恢复显示时，则立即触发引导界面的显示"
+         />
+</LinearLayout>

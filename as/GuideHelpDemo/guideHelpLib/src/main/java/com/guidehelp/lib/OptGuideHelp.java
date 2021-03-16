@@ -7,6 +7,7 @@ import com.guidehelp.lib.bean.GuideHelpTaskInfo;
 import com.guidehelp.lib.bean.ShowPositionType;
 import com.helpguide.lib.R;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -33,28 +34,33 @@ import android.widget.TextView;
  * */
 public final class OptGuideHelp extends BaseOptGuideHelp{
 	private final String TAG = OptGuideHelp.class.getSimpleName();
-	
-	private boolean isFullScreen;//界面是否全屏显示，默认非全屏
-	private Activity activity;
-	
+
+	private Context context;
+	/**界面是否全屏显示，默认非全屏*/
+	private boolean isFullScreen;
+
 	//提示窗
 	private PopupWindow tipsWindow = null;
 	private View tipsWindowRootView;
-	private int statusBarHeights = 0; //状态栏高度
-	private int screenHeight = 0; //状态栏高度
+	/**状态栏高度*/
+	private int statusBarHeights = 0;
+	private int screenHeight = 0;
 	private int screenWidth = 0;
 	
 	//提示内容
+	private CoverView coverView;
 	private LinearLayout tipLayout;
 	private ImageView imageView;
 	private TextView textView;
 	private ImageView arrowImageViewTop, arrowImageViewBottom;
-	
-	private ImageView showArrowImageView;//可以显示的箭头view
+
+	/**可以显示的箭头view*/
+	private ImageView showArrowImageView;
 	
 	//显示队列
 	private List<GuideHelpTaskInfo> helpList;
-	private int curShowIndex = 0;//当前显示index
+	/**当前显示index*/
+	private int curShowIndex = 0;
 	
 	private GuideHelpShowFinishListener guideHelpShowFinishListener;
 	
@@ -73,7 +79,7 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 	}
 	
 	private void init(Activity activity, boolean activityFullScreen, GuideHelpShowFinishListener guideHelpShowFinishListener){
-		this.activity = activity;
+		this.context = activity.getApplicationContext();
 		this.isFullScreen = activityFullScreen;
 		this.guideHelpShowFinishListener = guideHelpShowFinishListener;
 		this.helpList = new ArrayList<GuideHelpTaskInfo>();
@@ -89,15 +95,15 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 	}
 
 	@Override
-	protected void initGuideHelpWindow() {
+	protected void initGuideHelpWindow(Activity activity) {
 		try {
 			// 获取状态栏高度  
 			if(!isFullScreen && statusBarHeights <= 0){
 				//当不上全屏时，需要计算状态栏的高度
-			    statusBarHeights = ScreenTool.getStatusBarHeight(activity); 
+			    statusBarHeights = ScreenTool.getStatusBarHeight(activity);
 			    PrintLog.printLog(TAG, "initGuideHelpWindow statusBarHeight=" + statusBarHeights);
 			    if(statusBarHeights <= 0){
-			    	statusBarHeights = ScreenTool.getStatusBarHeight(activity.getApplicationContext());
+			    	statusBarHeights = ScreenTool.getStatusBarHeight(context);
 			    }
 			}
 	    
@@ -111,6 +117,7 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 			}
 			
 			tipsWindowRootView =  LayoutInflater.from(activity).inflate(R.layout.user_opt_guide_help, null);
+			coverView = (CoverView) tipsWindowRootView.findViewById(R.id.coverView);
 			tipLayout = (LinearLayout) tipsWindowRootView.findViewById(R.id.optHelpLay);
 			imageView = (ImageView) tipsWindowRootView.findViewById(R.id.imageView1);
 			textView = (TextView) tipsWindowRootView.findViewById(R.id.textView);
@@ -171,7 +178,7 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 
 	/**开始显示引导界面*/
 	@Override
-	public void showGuideHelp() {
+	public void showGuideHelp(final Activity activity) {
 		//非点击事件中调用， 直接显示popupwindow会出问题
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -183,7 +190,7 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 						return ;
 					}
 					if(tipsWindow == null){
-						initGuideHelpWindow();
+						initGuideHelpWindow(activity);
 					}
 					//tipsWindow.setAnimationStyle(R.style.Video_Filter_PopupAnimation);
 					tipsWindow.showAtLocation(tipsWindowRootView, Gravity.NO_GRAVITY, 0, statusBarHeights);
@@ -284,38 +291,51 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 //		        		inth =  View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.EXACTLY); 
 //		        	}
 //	        	}
-	        	guideHelpTaskInfo.attachView.measure(intw, inth); 
+
+	        	//guideHelpTaskInfo.attachView.measure(intw, inth);
 	        	width = guideHelpTaskInfo.attachView.getMeasuredWidth(); 
 	        	height = guideHelpTaskInfo.attachView.getMeasuredHeight();
 	        	PrintLog.printLog(TAG, "attachView size=" + width + "," + height);
+
+	        	if(guideHelpTaskInfo.isCanDrawCoverView()){
+					coverView.setAttachViewPosition(pos[0], pos[1] - statusBarHeights);
+					coverView.setAttachViewSize(width, height);
+					coverView.setCanDraw(true);
+				}else{
+	        		coverView.setCanDraw(false);
+				}
+
 	        	
 	        	//计算tip的Y位置
 	        	if(guideHelpTaskInfo.showPositionType == ShowPositionType.Above){
 	        		//在上面显示，需要减去imageView或者textView的高度
 	        		if(canShowImage(guideHelpTaskInfo)){
-		        		int imgResHeight = ScreenTool.getImageResHeightInDevice(activity.getResources(), guideHelpTaskInfo.imageRes);
+		        		int imgResHeight = ScreenTool.getImageResHeightInDevice(context.getResources(), guideHelpTaskInfo.imageRes);
 		        		lp.topMargin = pos[1] - imgResHeight - statusBarHeights;
 	        		}else{
-	        			int textHeight = ScreenTool.getTextViewHeight(activity, textView, guideHelpTaskInfo.tipText);
+	        			int textHeight = ScreenTool.getTextViewHeight(context, textView, guideHelpTaskInfo.tipText);
 		        		lp.topMargin = pos[1] - textHeight - statusBarHeights;
 	        		}
-	        	}else{ 
+	        	}else{
 	        		if(guideHelpTaskInfo.showPositionType == ShowPositionType.Below){
 			        	lp.topMargin = pos[1] + height - statusBarHeights;
 	        		}else{
 	        			//当showPositionType是ShowPositionType.None或者ShowPositionType.Mid时，居中重叠
 	        			if(canShowImage(guideHelpTaskInfo)){
 	        				//垂直方向上重叠显示并垂直居中，需要计算imageView的高度
-	        				int imgResHeight =  ScreenTool.getImageResHeightInDevice(activity.getResources(), guideHelpTaskInfo.imageRes);
+	        				int imgResHeight =  ScreenTool.getImageResHeightInDevice(context.getResources(), guideHelpTaskInfo.imageRes);
 		        			lp.topMargin = pos[1] + (height - imgResHeight) / 2 - statusBarHeights;
 		        		}else{
 		        			//垂直方向上重叠显示并垂直居中，需要计算textView的高度
-		        			int textHeight = ScreenTool.getTextViewHeight(activity, textView, guideHelpTaskInfo.tipText);
+		        			int textHeight = ScreenTool.getTextViewHeight(context, textView, guideHelpTaskInfo.tipText);
 		        			lp.topMargin = pos[1] + (height - textHeight) / 2 - statusBarHeights;
 		        		}
 	        		}
 	        	}
 	        }else{
+				coverView.resetAttachView();
+	        	coverView.setCanDraw(guideHelpTaskInfo.isCanDrawCoverView());
+	        	coverView.resetAttachView();
 	        	//当attachView不存在时，通过lp.topMargin或者lp.bottomMargin设置Y位置
 	        	if(guideHelpTaskInfo.topShowY != 0){
 	        		lp.gravity = Gravity.TOP;
@@ -332,7 +352,7 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 	        	showArrowImageView = null;
 		        if(guideHelpTaskInfo.showPositionType == ShowPositionType.Above){
 		        	//计算箭头的高度，并包含到Y位置上，当箭头在上面时，lp.topMargin需要减去箭头图片高度
-		        	int imgResHeight = ScreenTool.getImageResHeightInDevice(activity.getResources(), R.drawable.arrow_down);
+		        	int imgResHeight = ScreenTool.getImageResHeightInDevice(context.getResources(), R.drawable.arrow_down);
 		        	lp.topMargin -= imgResHeight;
 		        	showArrowImageView = arrowImageViewBottom;
 		        }else if(guideHelpTaskInfo.showPositionType == ShowPositionType.Below){
@@ -380,6 +400,9 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 	        
 	        //设置箭头的显示和箭头的X位置
 	        buildArrowImage(guideHelpTaskInfo, pos, width, height);
+
+	        //通知遮罩层重绘
+	        coverView.invalidate();
 	}
 	
 	//是否显示图片
@@ -411,7 +434,7 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 		        		imageParams.gravity = Gravity.LEFT;
 			        	imageParams.leftMargin = attachViewPos[0];
 		        		//计算图片的宽度
-		        		int tipImageWidth = ScreenTool.getImageResWidthInDevice(activity.getResources(), guideHelpTaskInfo.imageRes);	
+		        		int tipImageWidth = ScreenTool.getImageResWidthInDevice(context.getResources(), guideHelpTaskInfo.imageRes);
 		        		PrintLog.printLog(TAG, "tipImageView width=" + tipImageWidth);
 		        		imageParams.leftMargin += (attachViewWidth - tipImageWidth) / 2;
 		        	}
@@ -447,7 +470,7 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 	        		textParams.gravity = Gravity.LEFT;
 		        	textParams.leftMargin = attachViewPos[0];
 	        		//计算textView的宽度
-	        		int tipTextWidth = ScreenTool.getTextViewWidth(activity, textView, guideHelpTaskInfo.tipText);	
+	        		int tipTextWidth = ScreenTool.getTextViewWidth(context, textView, guideHelpTaskInfo.tipText);
 	        		PrintLog.printLog(TAG, "tipTextView width=" + tipTextWidth);
 	        		textParams.leftMargin += (attachViewWidth - tipTextWidth) / 2;
 	        	}
@@ -483,10 +506,10 @@ public final class OptGuideHelp extends BaseOptGuideHelp{
 		        	imageParams.gravity = Gravity.LEFT;
 		        	imageParams.leftMargin = attachViewPos[0];
 		        	if(attachViewWidth > 0){
-		        		int arrowWidth = ScreenTool.getImageResWidthInDevice(activity.getResources(), R.drawable.arrow_down);	
+		        		int arrowWidth = ScreenTool.getImageResWidthInDevice(context.getResources(), R.drawable.arrow_down);
 		        		imageParams.leftMargin += (attachViewWidth - arrowWidth) / 2;
 		        	}else{
-		        		imageParams.leftMargin += ScreenTool.convertDpToPx(activity, 6);
+		        		imageParams.leftMargin += ScreenTool.convertDpToPx(context, 6);
 		        	}
 		        }
 		        showArrowImageView.setLayoutParams(imageParams);

@@ -229,7 +229,7 @@ public class TestFragment1 extends Fragment{
 				
 				/* end 文本显示测试*/
 				
-				optGuideHelp.showGuideHelp();		
+				optGuideHelp.showGuideHelp(activity);
              }else{
             	 PrintLog.printLog(TAG, "已显示过或者正在显示,needShow=" + needShow);
              }

@@ -3,7 +3,9 @@ package com.guidehelp.lib.bean;
 import android.view.View;
 
 
-//需要显示的指引任务
+/**
+ * 需要显示的指引任务
+ * */
 public class GuideHelpTaskInfo {
 	/**引导图片资源*/
 	public int imageRes;
@@ -33,13 +35,17 @@ public class GuideHelpTaskInfo {
 	 * */
 	public ShowPositionType showPositionType;
 	/**是否需要显示箭头，默认不显示*/
-	public boolean needArrow;
+	private boolean needArrow;
+
+	/**是否绘制遮罩*/
+	private boolean canDrawCoverView;
 	
 	public GuideHelpTaskInfo(){
 		this.attachView = null;
 		this.imageRes = -1;
 		this.showPositionType = ShowPositionType.None;
 		this.needArrow = false;
+		this.canDrawCoverView = true;
 	}
 	
 	/**
@@ -158,13 +164,27 @@ public class GuideHelpTaskInfo {
 		return this;
 	}
 
+	/**
+	 * 设置是否可以显示遮罩层
+	 * */
+	public GuideHelpTaskInfo setCanDrawCover(boolean canDrawCover){
+		this.canDrawCoverView = canDrawCover;
+		return this;
+	}
+
 	public void build(){
 		
 	}
 	
-	//是否可以显示箭头
+	/**是否可以显示箭头*/
 	public boolean canShowArrow(){
 		//return needArrow && attachView != null && (showPositionType == ShowPositionType.Above || showPositionType == ShowPositionType.Below);
 		return needArrow && (showPositionType == ShowPositionType.Above || showPositionType == ShowPositionType.Below);
 	}
+
+	/**是否可以显示遮罩层*/
+	public boolean isCanDrawCoverView(){
+		return canDrawCoverView;
+	}
+
 }

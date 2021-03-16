@@ -1,5 +1,7 @@
 package com.guidehelp.lib;
 
+import android.app.Activity;
+
 import com.guidehelp.lib.bean.GuideHelpTaskInfo;
 
 
@@ -11,12 +13,12 @@ public abstract class BaseOptGuideHelp {
 	 * 初始化引导
 	 * 
 	 * */
-	protected abstract void initGuideHelpWindow();
+	protected abstract void initGuideHelpWindow(Activity activity);
 	
 	/**
 	 * 显示引导
 	 * */
-	public abstract void showGuideHelp();
+	public abstract void showGuideHelp(Activity activity);
 	
 	/**
 	 * 停止引导

@@ -164,7 +164,7 @@ public class GuideHelpTestActivity extends Activity{
 		
 		
 		
-		optGuideHelp.showGuideHelp();
+		optGuideHelp.showGuideHelp(this);
 	}
 	
 	
@@ -233,6 +233,6 @@ public class GuideHelpTestActivity extends Activity{
 			.setBottomShowY(ScreenTool.convertDpToPx(getApplicationContext(), 30));
 		optGuideHelp.addGuideHelpTask(guideHelpTaskInfo);
 		
-		optGuideHelp.showGuideHelp();
+		optGuideHelp.showGuideHelp(this);
 	}
 }

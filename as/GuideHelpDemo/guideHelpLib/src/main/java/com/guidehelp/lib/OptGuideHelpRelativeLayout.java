@@ -6,7 +6,11 @@ import java.util.List;
 import com.guidehelp.lib.bean.GuideHelpTaskInfo;
 import com.guidehelp.lib.bean.ShowPositionType;
 import com.helpguide.lib.R;
+
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -30,11 +34,12 @@ import android.widget.FrameLayout.LayoutParams;
  * 		纵向的箭头(线性布局在4个方向上显示箭头，可以用动态添加控件实现，也可以用布局文
  * 		件，只是布局文件相对于RelativeLayout而言，较复杂)，只是思路还没有完成,仅搭建了设计初步结构，仅供参考
  * */
+@Deprecated
 public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
 	private final String TAG = OptGuideHelpRelativeLayout.class.getSimpleName();
 	
-	private Activity activity;
-	
+	private Context context;
+
 	//提示窗
 	private PopupWindow tipsWindow = null;
 	private View tipsWindowRootView;
@@ -57,12 +62,12 @@ public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
 	
 	
 	public OptGuideHelpRelativeLayout(Activity activity) {
-		this.activity = activity;
+		this.context = activity.getApplicationContext();
 		this.helpList = new ArrayList<GuideHelpTaskInfo>();
 	}
 
 	 @Override
-	protected void initGuideHelpWindow() {
+	protected void initGuideHelpWindow(Activity activity) {
 		try {
 			if(statusBarHeights <= 0 || screenHeight <= 0 || screenWidth <= 0){
 				// 获取状态栏高度  
@@ -128,7 +133,7 @@ public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
 	}
 
 	@Override
-	public void showGuideHelp() {
+	public void showGuideHelp(final Activity activity) {
 		//非点击事件中调用， 直接显示popupwindow会出问题
 		new Handler().postDelayed(new Runnable() {
 			@Override
@@ -140,7 +145,7 @@ public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
 						return ;
 					}
 					if(tipsWindow == null){
-						initGuideHelpWindow();
+						initGuideHelpWindow(activity);
 					}
 					//tipsWindow.setAnimationStyle(R.style.Video_Filter_PopupAnimation);
 					tipsWindow.showAtLocation(tipsWindowRootView, Gravity.NO_GRAVITY, 0, statusBarHeights);
@@ -205,14 +210,14 @@ public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
         	
         	if(guideHelpTaskInfo.showPositionType == ShowPositionType.Above){
         		//上部显示
-        		int imgResHeight = ScreenTool.getImageResHeightInDevice(activity.getResources(), guideHelpTaskInfo.imageRes);
+        		int imgResHeight = ScreenTool.getImageResHeightInDevice(context.getResources(), guideHelpTaskInfo.imageRes);
         		lp.topMargin = pos[1] - imgResHeight - statusBarHeights;
         	}else{ 
         		if(guideHelpTaskInfo.showPositionType == ShowPositionType.Below){
 		        	lp.topMargin = pos[1] + height - statusBarHeights;
         		}else{
         			//居中重叠
-        			int imgResHeight = ScreenTool.getImageResHeightInDevice(activity.getResources(), guideHelpTaskInfo.imageRes);
+        			int imgResHeight = ScreenTool.getImageResHeightInDevice(context.getResources(), guideHelpTaskInfo.imageRes);
         			lp.topMargin = pos[1] + (height - imgResHeight) / 2 - statusBarHeights;
         		}
         	}
@@ -259,7 +264,7 @@ public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
         	imageParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
             imageParams.topMargin = guideHelpTaskInfo.topMargin;
         }else if(guideHelpTaskInfo.bottomMargin != 0){
-            if(!guideHelpTaskInfo.needArrow){
+            if(!guideHelpTaskInfo.canShowArrow()){
             	//imageParams.gravity |= Gravity.BOTTOM;
             	imageParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
             	//不显示箭头时才设置
@@ -275,7 +280,7 @@ public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
 
 	@Override
 	protected void buildArrowImage(GuideHelpTaskInfo guideHelpTaskInfo, int[] attachViewPos, int attachViewWidth, int attachViewHeight) {
-		 if(guideHelpTaskInfo.needArrow){
+		 if(guideHelpTaskInfo.canShowArrow()){
 		        //LinearLayout.LayoutParams imageParams = (LinearLayout.LayoutParams) arrowImageView.getLayoutParams();
 		        RelativeLayout.LayoutParams imageParams = (RelativeLayout.LayoutParams) arrowImageView.getLayoutParams();
 		        //相对布局时必须执行一次清理，否则上一次设置的会影响到下一个view的显示
@@ -289,10 +294,10 @@ public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
 		        	imageParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		        	imageParams.leftMargin = attachViewPos[0];
 		        	if(attachViewWidth > 0){
-		        		int imageHeight = ScreenTool.getImageResWidthInDevice(activity.getResources(), R.drawable.arrow_down);		        	
+		        		int imageHeight = ScreenTool.getImageResWidthInDevice(context.getResources(), R.drawable.arrow_down);
 		        		imageParams.leftMargin += (attachViewWidth - imageHeight) / 2;
 		        	}else{
-		        		imageParams.leftMargin += ScreenTool.convertDpToPx(activity, 6);
+		        		imageParams.leftMargin += ScreenTool.convertDpToPx(context, 6);
 		        	}
 		        }
 		        arrowImageView.setLayoutParams(imageParams);
@@ -323,6 +328,7 @@ public class OptGuideHelpRelativeLayout extends BaseOptGuideHelp{
 		buildGuideLay(guideHelpTaskInfo);
 	}
 	
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 	private void removeRelativeRule(RelativeLayout.LayoutParams lp){
 		lp.removeRule(RelativeLayout.ALIGN_PARENT_LEFT);
         lp.removeRule(RelativeLayout.ALIGN_PARENT_RIGHT);

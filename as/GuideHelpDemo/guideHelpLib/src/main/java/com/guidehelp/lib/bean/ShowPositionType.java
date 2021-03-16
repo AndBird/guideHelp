@@ -5,9 +5,13 @@ package com.guidehelp.lib.bean;
  * 
  * */
 public enum ShowPositionType {
-	None,  //默认，当有attachView时，默认显示成Mid
-	Above, //上面显示
-	Below, //下面显示
-	Mid;//垂直居中
+	/**默认，当有attachView时，默认显示成Mid*/
+	None,
+	/**上面显示*/
+	Above,
+	/**下面显示*/
+	Below,
+	/**垂直居中*/
+	Mid;
 }
 
